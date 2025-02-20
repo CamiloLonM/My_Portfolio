@@ -8,11 +8,11 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
+    "moduleResolution": "bundler", 
+    "isolatedModules": true, 
+    "noEmit": true, 
+
+    /* JSX */
     "jsx": "react-jsx",
 
     /* Linting */
@@ -20,7 +20,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+
+    /* Alias configuration */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@test/*": ["__test__/*"]
+    }
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*", "__test__/**/*"]
 }
