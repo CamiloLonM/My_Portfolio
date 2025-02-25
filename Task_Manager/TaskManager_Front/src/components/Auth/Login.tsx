@@ -5,26 +5,24 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import {
   Box,
-  Typography,
   TextField,
   Button,
   Divider,
   Link,
-  Modal,
   Grid2 as Grid,
-  Backdrop,
 } from '@mui/material';
 
 import { schemaLogin } from '@/validations/schemaLogin';
-import { ContentStyle } from '@/components/Auth/styles';
-import { p } from 'node_modules/react-router/dist/development/fog-of-war-BALYJxf_.mjs';
+import {
+  ContenteStyle,
+  ContentStyle,
+  TitleStyle,
+} from '@/components/Auth/styles';
 
 type FormData = {
   email: string;
   password: string;
 };
-
-const CustomBackdrop = (props: any) => <Box {...props} />;
 
 const Login: React.FC = () => {
   const [open, setOpen] = useState<boolean>(true);
@@ -37,7 +35,6 @@ const Login: React.FC = () => {
   };
 
   const {
-    register,
     handleSubmit,
     watch,
     control,
@@ -48,79 +45,73 @@ const Login: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log('Datos del formulario:', data);
+    console.log('🚀 ~ onSubmit ~ data:', data);
     handleClose();
   };
 
-  console.log(watch('email'));
-  console.log(watch('password'));
-
   return (
     <ContentStyle>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        disableEscapeKeyDown
-        slots={{
-          backdrop: CustomBackdrop,
-        }}
-      >
-        <Box>
-          <Typography id='modal-login-tittle' variant='h6' component='h2'>
-            Iniciar Sesión
-          </Typography>
+      <ContenteStyle>
+        <TitleStyle id='login-title' variant='h6' aria-label='Login title'>
+          Login
+        </TitleStyle>
 
-          <Box
-            sx={{ flexGrow: 1 }}
-            component='form'
-            noValidate
-            autoComplete='off'
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Grid container spacing={2}>
-              <Grid>
-                <Controller
-                  name='email'
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <TextField
-                      fullWidth
-                      id='email-input'
-                      label='email'
-                      variant='outlined'
-                      onBlur={onBlur}
-                      onChange={onChange}
-                      value={value}
-                      error={!!errors.email}
-                      helperText={errors.email?.message}
-                    />
-                  )}
-                />
-              </Grid>
-
-              <Grid>
-                <Controller
-                  name='password'
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <TextField
-                      fullWidth
-                      id='password-input'
-                      label='password'
-                      type='password'
-                      variant='outlined'
-                      onBlur={onBlur}
-                      onChange={onChange}
-                      value={value}
-                      error={!!errors.password}
-                      helperText={errors.password?.message}
-                    />
-                  )}
-                />
-              </Grid>
+        <Box
+          sx={{ flexGrow: 1, mt: 2 }}
+          component='form'
+          noValidate
+          autoComplete='off'
+          onSubmit={handleSubmit(onSubmit)}
+          aria-label='Login form'
+        >
+          <Grid container direction='column' spacing={2}>
+            <Grid>
+              <Controller
+                name='email'
+                control={control}
+                rules={{ required: true }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextField
+                    fullWidth
+                    id='email-input'
+                    label='Email'
+                    variant='outlined'
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    value={value}
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
+                    aria-label='Email input field'
+                  />
+                )}
+              />
             </Grid>
+
+            <Grid>
+              <Controller
+                name='password'
+                control={control}
+                rules={{ required: true }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextField
+                    fullWidth
+                    id='password-input'
+                    label='Password'
+                    type='password'
+                    variant='outlined'
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    value={value}
+                    error={!!errors.password}
+                    helperText={errors.password?.message}
+                    aria-label='Password input field'
+                  />
+                )}
+              />
+            </Grid>
+          </Grid>
+
+          <Box>
             <Button
               id='login-button'
               disabled={!watch('email') || !watch('password')}
@@ -130,29 +121,40 @@ const Login: React.FC = () => {
               type='submit'
               onClick={handleSubmit(onSubmit)}
               sx={{ mt: 2 }}
+              aria-label='Login button'
             >
               Login
             </Button>
           </Box>
-
-          <Divider variant='middle' sx={{ my: 2 }} />
-
-          <Button
-            fullWidth
-            variant='outlined'
-            size='medium'
-            onClick={handleGoogleSignIn}
-          >
-            Login with Google
-          </Button>
-
-          <Grid container justifyContent='center'>
-            <Link component={RouterLink} to='/register' variant='body2'>
-              ¿No tienes una cuenta? Regístrate
-            </Link>
-          </Grid>
         </Box>
-      </Modal>
+
+        <Divider
+          variant='middle'
+          sx={{ my: 2 }}
+          aria-label='Divider between login options'
+        />
+
+        <Button
+          fullWidth
+          variant='outlined'
+          size='medium'
+          onClick={handleGoogleSignIn}
+          aria-label='Sign in with Google button'
+        >
+          Sign in with Google
+        </Button>
+
+        <Grid container direction='column' sx={{ mt: 2 }}>
+          <Link
+            component={RouterLink}
+            to='/register'
+            variant='body2'
+            aria-label='Link to registration page'
+          >
+            Don't have an account? Sign up
+          </Link>
+        </Grid>
+      </ContenteStyle>
     </ContentStyle>
   );
 };
