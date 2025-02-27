@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import {
   Box,
@@ -11,11 +11,12 @@ import {
   Link,
   Grid2 as Grid,
 } from '@mui/material';
+import GoogleLogin from '@/components/Auth/GoogleLogin';
 
-import { schemaLogin } from '@/validations/schemaLogin';
+import { schemaLogin } from '@/validations/schema';
 import {
-  ContenteStyle,
   ContentStyle,
+  ContainerStyle,
   TitleStyle,
 } from '@/components/Auth/styles';
 
@@ -26,13 +27,12 @@ type FormData = {
 
 const Login: React.FC = () => {
   const [open, setOpen] = useState<boolean>(true);
-  const navigate = useNavigate();
 
   const handleClose = () => setOpen(false);
 
-  const handleGoogleSignIn = () => {
-    console.log('Iniciar sesión con Google');
-  };
+  // const handleGoogleSignIn = () => {
+  //   console.log('Iniciar sesión con Google');
+  // };
 
   const {
     handleSubmit,
@@ -50,8 +50,8 @@ const Login: React.FC = () => {
   };
 
   return (
-    <ContentStyle>
-      <ContenteStyle>
+    <ContainerStyle>
+      <ContentStyle>
         <TitleStyle id='login-title' variant='h6' aria-label='Login title'>
           Login
         </TitleStyle>
@@ -134,15 +134,7 @@ const Login: React.FC = () => {
           aria-label='Divider between login options'
         />
 
-        <Button
-          fullWidth
-          variant='outlined'
-          size='medium'
-          onClick={handleGoogleSignIn}
-          aria-label='Sign in with Google button'
-        >
-          Sign in with Google
-        </Button>
+        <GoogleLogin />
 
         <Grid container direction='column' sx={{ mt: 2 }}>
           <Link
@@ -154,8 +146,8 @@ const Login: React.FC = () => {
             Don't have an account? Sign up
           </Link>
         </Grid>
-      </ContenteStyle>
-    </ContentStyle>
+      </ContentStyle>
+    </ContainerStyle>
   );
 };
 

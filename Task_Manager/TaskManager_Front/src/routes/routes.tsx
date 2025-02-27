@@ -1,5 +1,6 @@
 import Login from '@/components/Auth/Login';
 import Home from '@/components/Home';
+import Register from '@/components/Register/Register';
 
 import { RouteObject } from 'react-router';
 
@@ -14,7 +15,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/register',
-    // element: <Register />,
+    element: <Register />,
   },
 ];
 
