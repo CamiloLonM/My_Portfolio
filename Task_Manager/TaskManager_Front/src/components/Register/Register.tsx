@@ -13,6 +13,7 @@ import {
   ContentStyle,
   TitleStyle,
 } from '@/components/Register/styles';
+import { useNavigate } from 'react-router';
 
 const genres = [
   { value: 'male', label: 'Male' },
@@ -31,16 +32,15 @@ type FormData = {
 
 const Register: React.FC = () => {
   const [open, setOpen] = useState<boolean>(true);
-  navigator;
+  const navigate = useNavigate();
 
   const handleClose = () => setOpen(false);
 
   const {
     handleSubmit,
-    watch,
     control,
     reset,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
   } = useForm<FormData>({
     resolver: yupResolver(schemaRegister),
     defaultValues: {
@@ -57,6 +57,7 @@ const Register: React.FC = () => {
     console.log('🚀 ~ onSubmit ~ data:', data);
     reset();
     handleClose();
+    navigate('/');
   };
 
   return (
@@ -122,7 +123,6 @@ const Register: React.FC = () => {
                 )}
               />
             </Grid>
-
             <Grid>
               <Controller
                 name='email'
@@ -231,14 +231,7 @@ const Register: React.FC = () => {
             <Button
               sx={{ mt: 2 }}
               id='register-button'
-              disabled={
-                !watch('email') ||
-                !watch('password') ||
-                !watch('firstName') ||
-                !watch('surname') ||
-                !watch('birthDate') ||
-                !watch('gender')
-              }
+              disabled={!isValid || !isDirty}
               fullWidth
               size='medium'
               variant='contained'

@@ -15,7 +15,12 @@ export const schemaRegister = yup.object({
     .min(6, messages.passwordMinLength)
     .max(12, messages.passwordMaxLength)
     .required(messages.required),
-  birthDate: yup.date().nullable().defined().min(new Date(1900, 0, 1)),
+  birthDate: yup
+    .date()
+    .nullable()
+    .defined()
+    .required(messages.required)
+    .min(new Date(1900, 0, 1)),
   gender: yup
     .mixed<'male' | 'female' | 'other'>()
     .oneOf(['male', 'female', 'other'])
