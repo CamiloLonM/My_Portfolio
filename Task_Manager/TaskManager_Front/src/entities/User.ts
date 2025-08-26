@@ -1,3 +1,5 @@
+import { UserStatus } from '@/constants/userStatus';
+
 /**
  * Represents a User.
  * This class encapsulates all the properties and behaviors related to a user.
@@ -6,16 +8,16 @@ class User {
   id: string;
   gender: string;
   avatar: string;
-  country: string;
+  country?: string;
   email: string;
   firstName: string;
   lastName: string;
-  password: string;
-  lastActiveAt: Date;
-  status: string;
-  createdAt: Date;
-  updatedAt: Date;
-  updatedBy: string;
+  password?: string;
+  lastActiveAt?: number;
+  status: UserStatus;
+  createdAt: number;
+  updatedAt: number;
+  updatedBy?: string;
 
   /**
    * Creates an instance of User.
@@ -28,10 +30,10 @@ class User {
    * @param {string} params.firstName - The first name of the user.
    * @param {string} params.lastName - The last name of the user.
    * @param {string} params.password - The password of the user (usually hashed).
-   * @param {Date} params.lastActiveAt - The timestamp when the user was last active.
+   * @param {number} params.lastActiveAt - The timestamp when the user was last active.
    * @param {string} params.status - The current status of the user (e.g., active, inactive).
-   * @param {Date} params.createdAt - The timestamp when the user was created.
-   * @param {Date} params.updatedAt - The timestamp when the user was last updated.
+   * @param {number} params.createdAt - The timestamp when the user was created.
+   * @param {number} params.updatedAt - The timestamp when the user was last updated.
    * @param {string} params.updatedBy - The identifier of the user or system that last updated this user.
    */
   constructor({
@@ -57,10 +59,10 @@ class User {
     firstName: string;
     lastName: string;
     password: string;
-    lastActiveAt: Date;
-    status: string;
-    createdAt: Date;
-    updatedAt: Date;
+    lastActiveAt: number;
+    status: UserStatus;
+    createdAt: number;
+    updatedAt: number;
     updatedBy: string;
   }) {
     /**
@@ -104,7 +106,7 @@ class User {
     this.password = password;
 
     /**
-     * @property {Date} lastActiveAt - The timestamp when the user was last active.
+     * @property {number} lastActiveAt - The timestamp when the user was last active.
      */
     this.lastActiveAt = lastActiveAt;
 
@@ -114,12 +116,12 @@ class User {
     this.status = status;
 
     /**
-     * @property {Date} createdAt - The timestamp when the user was created.
+     * @property {number} createdAt - The timestamp when the user was created.
      */
     this.createdAt = createdAt;
 
     /**
-     * @property {Date} updatedAt - The timestamp when the user was last updated.
+     * @property {number}updatedAt - The timestamp when the user was last updated.
      */
     this.updatedAt = updatedAt;
 

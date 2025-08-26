@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import {
   Box,
@@ -26,13 +26,7 @@ type FormData = {
 };
 
 const Login: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(true);
-
-  const handleClose = () => setOpen(false);
-
-  // const handleGoogleSignIn = () => {
-  //   console.log('Iniciar sesión con Google');
-  // };
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -44,9 +38,15 @@ const Login: React.FC = () => {
     defaultValues: { email: '', password: '' },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
-    handleClose();
+  const onSubmit = async (data: any) => {
+    try {
+      // llamada al barcken d
+      //       await login(data.email, data.password);
+      // Aquí deberías redirigir a otra página si el login fue exitoso
+      navigate('/home'); //
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

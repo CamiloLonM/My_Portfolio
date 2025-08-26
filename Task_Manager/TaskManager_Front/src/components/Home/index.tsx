@@ -1,7 +1,11 @@
+import Dashboard from '../Dashboard';
+import Sidebar from '../Dashboard/Sidebar/Sidebar';
+
 const Home: React.FC = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Sidebar />
+      <Dashboard />
     </div>
   );
 };

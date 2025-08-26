@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { messages } from '@/validations/validationMessages';
+import { USER_GENDER } from '@/constants/userGender';
 
 export const schemaLogin = yup.object({
   email: yup.string().email(messages.invalidEmail).required(messages.required),
@@ -18,11 +19,10 @@ export const schemaRegister = yup.object({
   birthDate: yup
     .date()
     .nullable()
-    .defined()
     .required(messages.required)
     .min(new Date(1900, 0, 1)),
   gender: yup
-    .mixed<'male' | 'female' | 'other'>()
-    .oneOf(['male', 'female', 'other'])
+    .mixed<USER_GENDER>()
+    .oneOf(Object.values(USER_GENDER))
     .required(messages.required),
 });
