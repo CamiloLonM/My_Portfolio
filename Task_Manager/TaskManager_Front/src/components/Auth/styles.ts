@@ -14,10 +14,6 @@ export const TitleStyle = styled(Typography)(({ theme }: { theme: Theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   padding: pxToRem(16),
-  fontFamily: theme.typography.fontFamily,
-  fontSize: theme.typography.h2.fontSize,
-  fontWeight: theme.typography.h2.fontWeight,
-  color: theme.palette.text.primary,
 }));
 
 export const ContentStyle = styled(Box)(({ theme }: { theme: Theme }) => ({

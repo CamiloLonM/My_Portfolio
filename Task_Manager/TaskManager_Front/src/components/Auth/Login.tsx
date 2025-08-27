@@ -50,7 +50,7 @@ const Login: React.FC = () => {
   return (
     <ContainerStyle>
       <ContentStyle>
-        <TitleStyle id='login-title' variant='h6' aria-label='Login title'>
+        <TitleStyle id='login-title' variant='h2' aria-label='Login title'>
           Login
         </TitleStyle>
 

@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { grey } from '@mui/material/colors';
 import { pxToRem } from './utils/pxToRem';
 
 const customColors = {
@@ -33,12 +34,8 @@ const typography = {
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: customColors.primary,
-    },
-    secondary: {
-      main: customColors.secondary,
-    },
+    primary: { main: customColors.primary },
+    secondary: { main: customColors.secondary },
     background: {
       default: customColors.background,
       paper: '#ffffff',
@@ -47,14 +44,45 @@ const theme = createTheme({
       primary: customColors.textPrimary,
       secondary: customColors.textSecondary,
     },
-    error: {
-      main: '#d32f2f',
-    },
-    warning: {
-      main: '#ffa000',
-    },
+    error: { main: '#d32f2f' },
+    warning: { main: '#ffa000' },
   },
   typography,
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: pxToRem(8),
+          textTransform: 'none',
+          fontWeight: 600,
+          fontSize: pxToRem(14),
+          fontFamily: typography.fontFamily,
+        },
+      },
+      variants: [
+        {
+          props: { variant: 'cancel' },
+          style: {
+            color: customColors.textPrimary,
+            backgroundColor: grey[200],
+            '&:hover': {
+              backgroundColor: grey[500],
+            },
+          },
+        },
+        {
+          props: { variant: 'save' },
+          style: {
+            backgroundColor: customColors.primary,
+            color: '#fff',
+            '&:hover': {
+              backgroundColor: '#115293',
+            },
+          },
+        },
+      ],
+    },
+  },
 });
 
 export default theme;
