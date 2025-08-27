@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import User from '@/entities/User';
 import { jwtDecode } from 'jwt-decode';
+import User from '@/entities/User';
 import { GoogleUser } from '@/types/GoogleUser';
 import mapGoogleUserToUser from '@/adapters/googleUserAdapter';
 

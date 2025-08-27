@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import ChartPie from '../ChartsPie/ChartsPie';
 import { ContainerStyle, ContentManagerStyle, TypographyStyle } from './styles';
 

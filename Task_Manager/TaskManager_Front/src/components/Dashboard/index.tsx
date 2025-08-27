@@ -3,7 +3,7 @@ import DashboardHeader from './DashboardHeader/DashboardHeader';
 import TaskSummary from './TaskSummary/TaskSummary';
 import QuickActions from './QuickActions/QuickActions';
 import RecentTasks from './RecentTasks/RecentTasks';
-import { ContainerStyle, ContentStyle } from './styles';
+import { ContentStyle } from './styles';
 
 const Dashboard: React.FC = () => {
   return (

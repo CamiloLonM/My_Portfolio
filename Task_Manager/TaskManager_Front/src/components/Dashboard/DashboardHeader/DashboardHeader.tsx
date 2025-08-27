@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import BadgeAvatars from '../BadgeAvatars/BadgeAvatars';
+import BadgeAvatars from '@/components/Dashboard/BadgeAvatars/BadgeAvatars';
 
 const DashboardHeader: React.FC = () => {
   return (

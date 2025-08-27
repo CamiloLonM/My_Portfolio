@@ -1,8 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-
 import {
   Box,
   TextField,
@@ -12,8 +10,8 @@ import {
   Grid2 as Grid,
 } from '@mui/material';
 import GoogleLogin from '@/components/Auth/GoogleLogin';
-
-import { schemaLogin } from '@/validations/schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaLogin } from '@/validations/Login/schemaLogin';
 import {
   ContentStyle,
   ContainerStyle,

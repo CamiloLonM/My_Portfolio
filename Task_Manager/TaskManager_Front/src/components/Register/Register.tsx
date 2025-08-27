@@ -7,7 +7,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Box, TextField, Button, MenuItem, Grid2 as Grid } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaRegister } from '@/validations/schema';
 import { USER_GENDER } from '@/constants/userGender';
 import {
   ContainerStyle,
@@ -15,14 +14,16 @@ import {
   TitleStyle,
 } from '@/components/Register/styles';
 import { getUnixTimestamp, toUnixTimestamp } from '@/utils/date';
+import { schemaRegister } from '@/validations/Register/schemaRegister';
+import { RegisterFormUser } from '@/types/RegisterFormUser';
 
-type FormData = {
-  firstName: string;
-  surname: string;
-  email: string;
-  password: string;
-  birthDate: null | Date;
-  gender: USER_GENDER;
+const defaultValues = {
+  firstName: '',
+  surname: '',
+  email: '',
+  password: '',
+  birthDate: undefined,
+  gender: USER_GENDER.OTHER,
 };
 
 const Register: React.FC = () => {
@@ -33,21 +34,14 @@ const Register: React.FC = () => {
     control,
     reset,
     formState: { errors, isValid, isDirty },
-  } = useForm<FormData>({
+  } = useForm<RegisterFormUser>({
     resolver: yupResolver(schemaRegister),
     mode: 'onChange',
     criteriaMode: 'all',
-    defaultValues: {
-      firstName: '',
-      surname: '',
-      email: '',
-      password: '',
-      birthDate: null,
-      gender: USER_GENDER.OTHER,
-    },
+    defaultValues,
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: RegisterFormUser) => {
     const payload = {
       ...data,
       birthDate: data.birthDate ? toUnixTimestamp(data.birthDate) : null,
@@ -191,13 +185,13 @@ const Register: React.FC = () => {
               <Controller
                 name='birthDate'
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value, onBlur } }) => (
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       disableFuture
                       label='Date of birth'
                       value={value ? dayjs(value) : null}
-                      onChange={onChange}
+                      onChange={(date) => onChange(date ? date.toDate() : null)}
                       onClose={onBlur}
                       slotProps={{
                         textField: {

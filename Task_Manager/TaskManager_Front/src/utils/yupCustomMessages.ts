@@ -1,0 +1,4 @@
+export const customMessages = {
+  required: 'This field is required',
+  invalidEmail: 'Enter a valid email address',
+};
