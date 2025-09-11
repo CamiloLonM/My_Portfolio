@@ -7,7 +7,7 @@ export const ContainerStyle = styled(Box)(({ theme }: { theme: Theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   backdropFilter: `blur(${pxToRem(16)})`,
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
   boxShadow: `0 ${pxToRem(4)} ${pxToRem(6)} rgba(0, 0, 0, 0.1)`,
   gap: pxToRem(16),
   marginLeft: pxToRem(240),

@@ -1,0 +1,53 @@
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  line-height: 1.5;
+  background-color: $background-color;
+  color: $text-primary;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// Estilos para encabezados
+h1 {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+h2 {
+  font-size: $font-size-2xl;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+p {
+  font-size: $font-size-md;
+  color: $text-primary;
+
+  &.text-secondary {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+  }
+}
+
+.divider {
+  height: 1px;
+  background-color: $light-gray;
+  margin: $spacing-md 0;
+}
+
+.error {
+  color: $error-color;
+  margin-top: 0.25rem;
+}

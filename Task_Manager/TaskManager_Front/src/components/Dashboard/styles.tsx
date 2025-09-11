@@ -11,7 +11,7 @@ export const ContainerStyle = styled(Box)(({ theme }: { theme: Theme }) => ({
 
 export const ContentStyle = styled(Box)(({ theme }: { theme: Theme }) => ({
   backdropFilter: `blur(${pxToRem(16)})`,
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
   padding: pxToRem(32),
   borderRadius: pxToRem(16),
   boxShadow: `0 ${pxToRem(4)} ${pxToRem(6)} rgba(0, 0, 0, 0.1)`,

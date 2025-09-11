@@ -1,0 +1,124 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: $spacing-xl;
+  background-color: $background-color;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-xl;
+    border-radius: $border-radius-xxl;
+    background-color: $white;
+    box-shadow: 0 4px 20px $background-color;
+    width: 100%;
+    max-width: 400px;
+    gap: $spacing-md;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    background-color: $white;
+    color: $primary-color;
+    border-radius: $border-radius-xxl;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-top: 2rem;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $padding-sm;
+    border: 1px solid $light-gray;
+    border-radius: 0.5rem;
+    font-size: $font-size-sm;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 1px $primary-color;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    padding: $padding-sm;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &--primary {
+      background-color: $primary-color;
+      color: $white;
+
+      &:hover:not(:disabled) {
+        background-color: $light-gray;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: $light-gray;
+    margin: $spacing-md 0;
+  }
+
+  &__link-container {
+    text-align: center;
+  }
+
+  &__link {
+    color: $primary-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .login {
+    padding: $mobile-padding;
+
+    &__content {
+      padding: $mobile-padding;
+      border-radius: 1rem;
+    }
+
+    &__title {
+      position: static;
+      transform: none;
+      background-color: transparent;
+      box-shadow: none;
+      text-align: center;
+      margin-bottom: $mobile-gap;
+    }
+
+    &__form {
+      gap: $mobile-gap;
+      margin-top: 0;
+    }
+    &__input {
+      padding: 0.75rem;
+    }
+    &__button {
+      padding: 0.75rem;
+    }
+    &__divider {
+      margin: $mobile-gap 0;
+    }
+  }
+}

@@ -6,7 +6,6 @@ export const ContainerStyle = styled(Box)(({ theme }: { theme: Theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
-  backgroundColor: theme.palette.background.default,
 }));
 
 export const TitleStyle = styled(Typography)(({ theme }: { theme: Theme }) => ({
@@ -18,7 +17,6 @@ export const TitleStyle = styled(Typography)(({ theme }: { theme: Theme }) => ({
 
 export const ContentStyle = styled(Box)(({ theme }: { theme: Theme }) => ({
   backdropFilter: `blur(${pxToRem(16)})`,
-  backgroundColor: theme.palette.background.paper,
   padding: pxToRem(32),
   borderRadius: pxToRem(16),
   boxShadow: `0 ${pxToRem(4)} ${pxToRem(6)} rgba(0, 0, 0, 0.1)`,

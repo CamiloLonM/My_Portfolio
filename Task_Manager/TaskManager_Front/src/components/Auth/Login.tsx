@@ -1,22 +1,10 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  TextField,
-  Button,
-  Divider,
-  Link,
-  Grid2 as Grid,
-} from '@mui/material';
 import GoogleLogin from '@/components/Auth/GoogleLogin';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '@/validations/Login/schemaLogin';
-import {
-  ContentStyle,
-  ContainerStyle,
-  TitleStyle,
-} from '@/components/Auth/styles';
+import './Auth.scss';
 
 type FormData = {
   email: string;
@@ -48,104 +36,92 @@ const Login: React.FC = () => {
   };
 
   return (
-    <ContainerStyle>
-      <ContentStyle>
-        <TitleStyle id='login-title' variant='h2' aria-label='Login title'>
+    <div className='login'>
+      <div className='login__content'>
+        <h1 className='login__title' aria-label='Login title'>
           Login
-        </TitleStyle>
-
-        <Box
-          sx={{ flexGrow: 1, mt: 2 }}
-          component='form'
+        </h1>
+        <form
+          className='login__form'
           noValidate
-          autoComplete='off'
           onSubmit={handleSubmit(onSubmit)}
           aria-label='Login form'
         >
-          <Grid container direction='column' spacing={2}>
-            <Grid>
-              <Controller
-                name='email'
-                control={control}
-                rules={{ required: true }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextField
-                    fullWidth
+          <div className='form-group'>
+            <Controller
+              name='email'
+              control={control}
+              rules={{ required: 'Email es requerido' }}
+              render={({ field }) => (
+                <>
+                  <label className='h2' htmlFor='email-input'>
+                    Email
+                  </label>
+                  <input
+                    {...field}
                     id='email-input'
-                    label='Email'
-                    variant='outlined'
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
-                    aria-label='Email input field'
+                    type='email'
+                    className='login__input'
                   />
-                )}
-              />
-            </Grid>
+                  {errors.email && (
+                    <p className='error-text'>{errors.email.message}</p>
+                  )}
+                </>
+              )}
+            />
+          </div>
 
-            <Grid>
-              <Controller
-                name='password'
-                control={control}
-                rules={{ required: true }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextField
-                    fullWidth
+          <div className='form-group'>
+            <Controller
+              name='password'
+              control={control}
+              rules={{ required: 'Contraseña es requerida' }}
+              render={({ field }) => (
+                <>
+                  <label htmlFor='password-input'>Password</label>
+                  <input
+                    {...field}
                     id='password-input'
-                    label='Password'
                     type='password'
-                    variant='outlined'
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    error={!!errors.password}
-                    helperText={errors.password?.message}
-                    aria-label='Password input field'
+                    className='login__input'
                   />
-                )}
-              />
-            </Grid>
-          </Grid>
+                  {errors.password && (
+                    <p className='error'>{errors.password.message}</p>
+                  )}
+                </>
+              )}
+            />
+          </div>
 
-          <Box>
-            <Button
-              id='login-button'
-              disabled={!watch('email') || !watch('password')}
-              fullWidth
-              size='medium'
-              variant='contained'
-              type='submit'
-              onClick={handleSubmit(onSubmit)}
-              sx={{ mt: 2 }}
-              aria-label='Login button'
-            >
-              Login
-            </Button>
-          </Box>
-        </Box>
+          <button
+            id='login-button'
+            className='login__button login__button--primary'
+            disabled={!watch('email') || !watch('password')}
+            type='submit'
+            aria-label='Login button'
+          >
+            LOGIN
+          </button>
+        </form>
 
-        <Divider
-          variant='middle'
-          sx={{ my: 2 }}
+        <div
+          className='divider'
           aria-label='Divider between login options'
-        />
+        ></div>
 
         <GoogleLogin />
 
-        <Grid container direction='column' sx={{ mt: 2 }}>
-          <Link
-            component={RouterLink}
+        <div className='login__link-container'>
+          <RouterLink
             to='/register'
-            variant='body2'
+            className='login__link'
             aria-label='Link to registration page'
           >
             Don't have an account? Sign up
-          </Link>
-        </Grid>
-      </ContentStyle>
-    </ContainerStyle>
+          </RouterLink>
+        </div>
+      </div>
+    </div>
   );
 };
 

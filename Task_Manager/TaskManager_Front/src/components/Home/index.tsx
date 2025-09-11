@@ -1,12 +1,13 @@
 import Dashboard from '../Dashboard';
 import Sidebar from '../Dashboard/Sidebar/Sidebar';
+import { ContainerStyle } from './styles';
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <ContainerStyle aria-label='home_component'>
       <Sidebar />
       <Dashboard />
-    </div>
+    </ContainerStyle>
   );
 };
 

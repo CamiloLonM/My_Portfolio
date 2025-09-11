@@ -1,0 +1,48 @@
+@use 'variables' as *;
+
+@mixin button-base {
+  border-radius: $border-radius;
+  text-transform: none;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  font-family: $font-family;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-sm $spacing-md;
+  transition: background-color 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-color;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: $secondary-color;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+@mixin button-cancel {
+  @include button-base;
+  background-color: #e0e0e0;
+  color: $text-primary;
+
+  &:hover:not(:disabled) {
+    background-color: darken(#e0e0e0, 10%);
+  }
+}

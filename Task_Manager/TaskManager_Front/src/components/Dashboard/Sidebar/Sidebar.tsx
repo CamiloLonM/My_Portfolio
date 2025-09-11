@@ -14,13 +14,12 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import FolderIcon from '@mui/icons-material/Folder';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { ContainerSidebarStyle } from './styles';
 
 const Sidebar: React.FC = () => {
   const DrawerList = (
-    <Box>
-      <Typography variant='h6' component='div'>
-        Task Manager
-      </Typography>
+    <ContainerSidebarStyle aria-label='sidebar_component'>
+      <Typography variant='h5'>Task Manager</Typography>
       <Divider />
 
       <List>
@@ -61,7 +60,7 @@ const Sidebar: React.FC = () => {
           </ListItemButton>
         </ListItem>
       </List>
-    </Box>
+    </ContainerSidebarStyle>
   );
 
   return (
